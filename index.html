@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>China 2027 · Family trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #F5F7F4;
+    --surface: #FFFFFF;
+    --ink: #1B2421;
+    --ink-soft: #4C5A55;
+    --jade: #2E6B5B;
+    --jade-pale: #DCE8E2;
+    --seal: #B3302A;
+    --rule: #CBD5D0;
+    --serif: "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
+    --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #141A18;
+      --surface: #1C2421;
+      --ink: #E6ECE9;
+      --ink-soft: #A3B1AB;
+      --jade: #7FC1AC;
+      --jade-pale: #233530;
+      --seal: #E2625A;
+      --rule: #34413C;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #141A18;
+    --surface: #1C2421;
+    --ink: #E6ECE9;
+    --ink-soft: #A3B1AB;
+    --jade: #7FC1AC;
+    --jade-pale: #233530;
+    --seal: #E2625A;
+    --rule: #34413C;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px); scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper);
+  }
+  a { color: var(--jade); text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible, button:focus-visible {
+    outline: 3px solid var(--jade); outline-offset: 3px; border-radius: 4px;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.2; margin: 0; }
+  h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0 0 1em; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+  .measure { max-width: 40rem; }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+  }
+  nav.top .wrap { display: flex; align-items: center; gap: 1.25rem; height: 56px; overflow-x: auto; }
+  nav.top .mark { font-family: var(--serif); font-weight: 900; color: var(--seal); font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+  nav.top ul { list-style: none; display: flex; gap: 1.1rem; margin: 0 0 0 auto; padding: 0; }
+  nav.top ul a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; white-space: nowrap; }
+  nav.top ul a:hover { color: var(--ink); }
+
+  /* Hero */
+  header.hero { padding: clamp(3rem, 9vw, 6.5rem) 0 3rem; }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4.4rem); font-weight: 900; letter-spacing: -0.01em; max-width: 14ch; }
+  .hero .lede { font-size: clamp(1.1rem, 2.4vw, 1.3rem); color: var(--ink-soft); margin-top: 1.25rem; max-width: 36rem; }
+  .status {
+    display: inline-block; margin-top: 1.5rem; padding: 0.35rem 0.8rem;
+    border: 1px solid var(--jade); color: var(--jade); border-radius: 999px; font-size: 0.9rem; font-weight: 500;
+  }
+
+  /* Route: the memorable element */
+  .route {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 3.5rem; border-top: 2px solid var(--ink);
+  }
+  .leg { position: relative; padding: 1.5rem 1.25rem 0 0; }
+  .leg + .leg { padding-left: 1.25rem; border-left: 1px solid var(--rule); }
+  .leg .hanzi {
+    font-family: var(--serif); font-weight: 900; color: var(--seal);
+    font-size: clamp(3rem, 9vw, 6rem); line-height: 1; letter-spacing: 0.02em;
+  }
+  .leg .place { font-weight: 600; font-size: 1.1rem; margin-top: 0.75rem; }
+  .leg .nights { color: var(--ink-soft); font-size: 0.95rem; }
+  .leg a { position: absolute; inset: 0; }
+  @media (max-width: 640px) {
+    .route { grid-template-columns: 1fr; }
+    .leg, .leg + .leg { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: auto 1fr; column-gap: 1.25rem; align-items: center; }
+    .leg .hanzi { grid-row: span 2; font-size: 3.2rem; }
+    .leg .place { margin-top: 0; }
+  }
+
+  section { padding: 4rem 0; border-top: 1px solid var(--rule); }
+  .section-intro { color: var(--ink-soft); margin-bottom: 2rem; }
+
+  /* Facts */
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2rem 2.5rem; margin-top: 2rem; }
+  .fact h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .fact p { color: var(--ink-soft); margin: 0; }
+
+  /* Who */
+  .cities { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
+  .city { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 1.1rem 1.25rem; }
+  .city h3 { font-size: 1.05rem; color: var(--jade); margin-bottom: 0.4rem; }
+  .city ul { list-style: none; margin: 0; padding: 0; }
+  .city li { padding: 0.15rem 0; }
+
+  /* Itinerary */
+  .stop { display: grid; grid-template-columns: 9rem 1fr; gap: 2rem; padding: 2.5rem 0; }
+  .stop + .stop { border-top: 1px dashed var(--rule); }
+  .stop-head .hanzi { font-family: var(--serif); font-weight: 900; color: var(--seal); font-size: 2.6rem; line-height: 1; }
+  .stop-head h3 { margin-top: 0.6rem; font-size: 1.4rem; }
+  .stop-head .nights { color: var(--ink-soft); font-size: 0.95rem; }
+  .stop-body > p { max-width: 40rem; }
+  details.day { border-bottom: 1px solid var(--rule); }
+  details.day:first-of-type { border-top: 1px solid var(--rule); }
+  details.day summary {
+    cursor: pointer; list-style: none; padding: 0.9rem 0;
+    display: flex; gap: 1rem; align-items: baseline;
+  }
+  details.day summary::-webkit-details-marker { display: none; }
+  details.day summary .d { font-weight: 600; color: var(--jade); min-width: 3.5rem; }
+  details.day summary .t { flex: 1; font-weight: 500; }
+  details.day summary::after { content: "+"; color: var(--ink-soft); font-size: 1.2rem; line-height: 1; }
+  details.day[open] summary::after { content: "−"; }
+  details.day .inner { padding: 0 0 1rem 4.5rem; color: var(--ink-soft); }
+  details.day .inner ul { margin: 0; padding-left: 1.1rem; }
+  @media (max-width: 640px) {
+    .stop { grid-template-columns: 1fr; gap: 1.25rem; }
+    details.day .inner { padding-left: 0; }
+  }
+  .note { background: var(--jade-pale); border-radius: 6px; padding: 1rem 1.25rem; margin-top: 1.5rem; max-width: 40rem; }
+  .note p:last-child { margin: 0; }
+
+  /* Guide */
+  .guide { columns: 2 22rem; column-gap: 3rem; }
+  .guide article { break-inside: avoid; margin-bottom: 2.25rem; }
+  .guide h3 { margin-bottom: 0.5rem; }
+  .guide ul { margin: 0; padding-left: 1.1rem; }
+  .guide li { margin-bottom: 0.35rem; }
+  .guide p { margin-bottom: 0.6rem; }
+
+  /* Weather table */
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 26rem; font-size: 0.98rem; }
+  th, td { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 600; color: var(--ink-soft); }
+
+  /* To decide */
+  .open-list { list-style: none; padding: 0; margin: 0; max-width: 40rem; }
+  .open-list li { padding: 0.9rem 0 0.9rem 2rem; border-bottom: 1px solid var(--rule); position: relative; }
+  .open-list li::before { content: ""; position: absolute; left: 0; top: 1.25rem; width: 0.85rem; height: 0.85rem; border: 2px solid var(--seal); border-radius: 2px; }
+
+  footer { padding: 3rem 0 4rem; border-top: 2px solid var(--ink); color: var(--ink-soft); font-size: 0.95rem; }
+  footer .seal { display: inline-grid; place-items: center; width: 3rem; height: 3rem; background: var(--seal); color: #fff; font-family: var(--serif); font-weight: 900; font-size: 1.3rem; border-radius: 4px; margin-bottom: 1rem; }
+  .theme-btn { background: none; border: 1px solid var(--rule); color: var(--ink-soft); border-radius: 999px; padding: 0.3rem 0.8rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  .print-btn { background: var(--jade); color: var(--paper); border: 0; border-radius: 999px; padding: 0.55rem 1.1rem; font: inherit; font-weight: 600; cursor: pointer; margin-right: 0.5rem; }
+
+  @media print {
+    nav.top, .theme-btn, .print-btn { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    section { padding: 1.5rem 0; }
+    details.day .inner { display: block !important; }
+    a { color: #000; }
+    .guide { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">中国 2027</a>
+    <ul>
+      <li><a href="#plan">The plan</a></li>
+      <li><a href="#who">Who’s coming</a></li>
+      <li><a href="#itinerary">Itinerary</a></li>
+      <li><a href="#guide">Guide</a></li>
+      <li><a href="#decide">To decide</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <h1>China, September 2027</h1>
+    <p class="lede">Ten nights, twelve of us, from four cities. A celebration hosted by Zé, with Margarida doing the planning.</p>
+    <span class="status">Draft plan · dates not yet confirmed</span>
+
+    <div class="route" aria-label="Route">
+      <div class="leg">
+        <div class="hanzi" lang="zh">北京</div>
+        <div class="place">Beijing</div>
+        <div class="nights">3 nights</div>
+        <a href="#beijing" aria-label="Beijing details"></a>
+      </div>
+      <div class="leg">
+        <div class="hanzi" lang="zh">张家界</div>
+        <div class="place">Zhangjiajie</div>
+        <div class="nights">3 nights in Wulingyuan</div>
+        <a href="#zhangjiajie" aria-label="Zhangjiajie details"></a>
+      </div>
+      <div class="leg">
+        <div class="hanzi" lang="zh">上海</div>
+        <div class="place">Shanghai</div>
+        <div class="nights">4 nights</div>
+        <a href="#shanghai" aria-label="Shanghai details"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="plan">
+  <div class="wrap">
+    <h2>The plan</h2>
+    <p class="section-intro measure">Here’s what’s agreed so far. Anything still open is listed under <a href="#decide">To decide</a>.</p>
+    <div class="facts">
+      <div class="fact">
+        <h3>When</h3>
+        <p>September 2027, finishing before China’s National Day holiday (Golden Week, 1 to 7 October), when everything gets very crowded.</p>
+      </div>
+      <div class="fact">
+        <h3>How long</h3>
+        <p>Ten nights and ten full days of exploring. Travel days between cities still count as days out.</p>
+      </div>
+      <div class="fact">
+        <h3>Who pays for what</h3>
+        <p>Zé is hosting the trip. Each person sorts out their own visa, travel insurance and phone eSIM.</p>
+      </div>
+      <div class="fact">
+        <h3>Rooms</h3>
+        <p>One room per couple. In Zhangjiajie we stay in one hotel in Wulingyuan for all three nights, so no extra packing up.</p>
+      </div>
+      <div class="fact">
+        <h3>Family dinners</h3>
+        <p>Each family hosts one dinner during the trip. We’ll share out the nights once dates are fixed.</p>
+      </div>
+      <div class="fact">
+        <h3>Questions</h3>
+        <p>Message Margarida. She’s keeping track of everything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <h2>Who’s coming</h2>
+    <p class="section-intro measure">Grouped by where everyone is flying from, so it’s easy to coordinate flights.</p>
+    <div class="cities">
+      <div class="city">
+        <h3>From Lisbon</h3>
+        <ul><li>Zé</li><li>Sofia</li><li>Rodrigo and Teresa</li><li>Rita and Rafa</li></ul>
+      </div>
+      <div class="city">
+        <h3>From London</h3>
+        <ul><li>Margarida and Joaquin</li></ul>
+      </div>
+      <div class="city">
+        <h3>From San Francisco</h3>
+        <ul><li>Henrique and Camille</li></ul>
+      </div>
+      <div class="city">
+        <h3>From Boston</h3>
+        <ul><li>Francisco and Lilly</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="itinerary">
+  <div class="wrap">
+    <h2>Itinerary</h2>
+    <p class="section-intro measure">The order of cities is set. The days below are ideas to give a feel for the trip, not bookings. Tap a day to see more.</p>
+
+    <div class="stop" id="beijing">
+      <div class="stop-head">
+        <div class="hanzi" lang="zh">北京</div>
+        <h3>Beijing</h3>
+        <div class="nights">Days 1 to 3</div>
+      </div>
+      <div class="stop-body">
+        <p>The capital: imperial palaces, old hutong lanes and the Great Wall within driving distance.</p>
+        <details class="day">
+          <summary><span class="d">Day 1</span><span class="t">Arrive and settle in</span></summary>
+          <div class="inner"><ul><li>Arrivals from Lisbon, London, San Francisco and Boston</li><li>Gentle evening walk around a hutong neighbourhood</li><li>Welcome dinner, Peking duck</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 2</span><span class="t">Forbidden City and Temple of Heaven</span></summary>
+          <div class="inner"><ul><li>Tiananmen Square and the Forbidden City (tickets are booked ahead with your passport)</li><li>Jingshan Park for the view over the palace roofs</li><li>Temple of Heaven in the afternoon</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 3</span><span class="t">The Great Wall</span></summary>
+          <div class="inner"><ul><li>Mutianyu section: quieter, restored, with a cable car up so no long climb is needed</li><li>Back to the city for dinner</li></ul></div>
+        </details>
+      </div>
+    </div>
+
+    <div class="stop" id="zhangjiajie">
+      <div class="stop-head">
+        <div class="hanzi" lang="zh">张家界</div>
+        <h3>Zhangjiajie</h3>
+        <div class="nights">Days 4 to 6</div>
+      </div>
+      <div class="stop-body">
+        <p>The nature part of the trip. Tall sandstone pillars rising out of forest, the scenery that inspired the floating mountains in Avatar. We stay in one hotel in Wulingyuan, right by the park entrance.</p>
+        <details class="day">
+          <summary><span class="d">Day 4</span><span class="t">Fly to Zhangjiajie</span></summary>
+          <div class="inner"><ul><li>Morning flight from Beijing (about two and a half hours)</li><li>Transfer to Wulingyuan and check in</li><li>Easy evening, early night</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 5</span><span class="t">Zhangjiajie National Forest Park</span></summary>
+          <div class="inner"><ul><li>Bailong outdoor elevator up the cliff face</li><li>Yuanjiajie viewpoints and the pillar forests</li><li>Park buses link the areas, so walking can be kept light</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 6</span><span class="t">Tianmen Mountain</span></summary>
+          <div class="inner"><ul><li>About an hour’s drive from Wulingyuan</li><li>Long cable car up the mountain, cliffside glass walkway, Heaven’s Gate arch</li><li>Optional: the Grand Canyon glass bridge</li></ul></div>
+        </details>
+      </div>
+    </div>
+
+    <div class="stop" id="shanghai">
+      <div class="stop-head">
+        <div class="hanzi" lang="zh">上海</div>
+        <h3>Shanghai</h3>
+        <div class="nights">Days 7 to 10</div>
+      </div>
+      <div class="stop-body">
+        <p>A big modern city to finish: riverside skyline, tree-lined old streets, great food and an easy day trip to the canal towns.</p>
+        <details class="day">
+          <summary><span class="d">Day 7</span><span class="t">Fly to Shanghai</span></summary>
+          <div class="inner"><ul><li>Flight from Zhangjiajie</li><li>Evening on the Bund to see the skyline lit up</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 8</span><span class="t">Old Shanghai</span></summary>
+          <div class="inner"><ul><li>Yu Garden and the old town</li><li>Afternoon wandering the former French Concession</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 9</span><span class="t">Day trip</span></summary>
+          <div class="inner"><ul><li>Suzhou gardens by fast train, or the water town of Zhujiajiao</li></ul></div>
+        </details>
+        <details class="day">
+          <summary><span class="d">Day 10</span><span class="t">Free day and farewell dinner</span></summary>
+          <div class="inner"><ul><li>Shopping, rest, or a ride on the Maglev train</li><li>Farewell dinner together</li><li>Flights home the next day</li></ul></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap">
+    <h2>Travel guide</h2>
+    <p class="section-intro measure">The practical stuff. Rules change, so double-check anything official before you book.</p>
+    <div class="guide">
+      <article>
+        <h3>Visas</h3>
+        <p>Each person sorts their own. What you need depends on your passport, and China’s visa-free rules have changed a lot recently.</p>
+        <ul>
+          <li>Check the Chinese embassy or consulate website for the country of your passport</li>
+          <li>Your passport should be valid for at least six months after the trip</li>
+          <li>If you need a visa, apply a couple of months ahead</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Travel insurance</h3>
+        <ul>
+          <li>Get a policy that covers medical care abroad and trip cancellation</li>
+          <li>Check it covers activities like cable cars and mountain walks</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Phones and internet</h3>
+        <p>Google, WhatsApp, Instagram and most Western apps don’t work on Chinese Wi-Fi or local SIMs.</p>
+        <ul>
+          <li>Buy a travel eSIM before you go. Most route your data outside China, so WhatsApp and Google keep working</li>
+          <li>Install the eSIM at home, switch it on when you land</li>
+          <li>Save this page offline (use the button at the bottom) in case of a bad connection</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Money and apps</h3>
+        <p>China runs on phone payments. Cash works but many places prefer QR codes.</p>
+        <ul>
+          <li><strong>Alipay</strong> and <strong>WeChat</strong>: both let you link a foreign card. Set them up at home and test with a small payment</li>
+          <li><strong>DiDi</strong>: taxis, like Uber (also inside Alipay)</li>
+          <li><strong>Trip.com</strong>: trains and attraction tickets in English</li>
+          <li><strong>Amap</strong> or Apple Maps: Google Maps is unreliable in China</li>
+          <li>Carry some yuan in cash for small shops</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Always carry your passport</h3>
+        <p>You’ll need the actual passport (not a photo) for hotels, trains, flights and most big sights, since tickets are booked in your name.</p>
+      </article>
+      <article>
+        <h3>What to pack</h3>
+        <ul>
+          <li>Comfortable walking shoes, there’s a lot of walking and some steps</li>
+          <li>Light layers and a light rain jacket, Zhangjiajie can be misty and wet</li>
+          <li>Something warmer for the mountains</li>
+          <li>Plug adapter (China mostly uses Type A and Type I sockets)</li>
+          <li>Tissues and hand sanitiser, many public toilets have none</li>
+          <li>Any regular medication, in original packaging</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Weather in late September</h3>
+        <p>Rough daytime ranges, usually pleasant:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Place</th><th>Typical</th><th>Feels like</th></tr></thead>
+            <tbody>
+              <tr><td>Beijing</td><td>15 to 26°C</td><td>Dry, mild, cool evenings</td></tr>
+              <tr><td>Zhangjiajie</td><td>18 to 27°C</td><td>Humid, chance of rain, cooler up high</td></tr>
+              <tr><td>Shanghai</td><td>21 to 28°C</td><td>Warm and humid</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+      <article>
+        <h3>Useful phrases</h3>
+        <ul>
+          <li>Hello: nǐ hǎo</li>
+          <li>Thank you: xiè xie</li>
+          <li>How much?: duō shǎo qián?</li>
+          <li>Translation apps help a lot. Download Chinese for offline use</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="decide">
+  <div class="wrap">
+    <h2>Still to decide</h2>
+    <p class="section-intro measure">Send Margarida your thoughts on any of these.</p>
+    <ul class="open-list">
+      <li>Exact dates in September 2027. Tell Margarida which dates work for you, or suggest others.</li>
+      <li>Hotels in Beijing, Wulingyuan and Shanghai</li>
+      <li>Which family hosts which dinner</li>
+      <li>Where everyone meets on day 1 (flight arrival times)</li>
+      <li>Day trip choice in Shanghai: Suzhou or Zhujiajiao</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="seal" lang="zh">游</div>
+    <p>Made for the family, China 2027. This page is updated as plans firm up.</p>
+    <p>
+      <button class="print-btn" type="button" onclick="window.print()">Save as PDF</button>
+      <button class="theme-btn" type="button" id="themeBtn">Switch light/dark</button>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeBtn');
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+    } catch (e) {}
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      if (!current) current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+    window.addEventListener('beforeprint', function () {
+      document.querySelectorAll('details').forEach(function (d) { d.setAttribute('open', ''); });
+    });
+  })();
+</script>
+</body>
+</html>
